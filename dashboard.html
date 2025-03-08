@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Vibrant Gradient Background */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            animation: gradientBG 10s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Effect */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Styled Buttons */
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.4s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+
+        .logout {
+            background: linear-gradient(45deg, #ff4e50, #fc913a);
+        }
+
+        .generate-code {
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+        }
+
+        .enter-code {
+            background: linear-gradient(45deg, #28a745, #00c851);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Animated Code Display */
+        #code-display {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        /* Show code smoothly */
+        .show {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, {{ username }}! 🎉</h2>
+        <p>This is your personal dashboard.</p>
+
+        <button class="logout" onclick="logout()">🚪 Logout</button>
+        <button class="generate-code" onclick="generateCode()">🔑 Generate Code</button>
+        <button class="enter-code" onclick="enterCode()">🔐 Enter Code</button>
+
+        <p id="code-display"></p>
+    </div>
+
+    <script>
+        let validCode = "";  // Stores the generated code
+
+        function logout() {
+            window.location.href = "/logout";
+        }
+
+        function generateCode() {
+            validCode = Math.floor(100000 + Math.random() * 900000).toString(); // Generate a 6-digit code
+            let codeDisplay = document.getElementById("code-display");
+            codeDisplay.innerText = "Generated Code: " + validCode;
+            codeDisplay.classList.add("show");  // Show animation
+        }
+
+        function enterCode() {
+            let userCode = prompt("Enter your code:");
+            if (userCode === validCode) {
+                alert("✅ Code Valid! Redirecting...");
+                window.location.href = "/chat/" + userCode;  // Redirect to chat room
+            } else {
+                alert("❌ Invalid Code. Try Again!");
+            }
+        }
+    </script>
+</body>
+</html>

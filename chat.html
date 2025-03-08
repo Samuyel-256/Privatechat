@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Private Chat Room ✨</title>
+    <style>
+        /* 🔥 Beautiful Gradient Background */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #0810af, #ff7eb3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        /* 💬 Chat Container */
+        .chat-container {
+            width: 450px;
+            background: #922727;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+
+        /* 🔥 Stylish Heading */
+        h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* 💬 Chat Box */
+        .chat-box {
+            height: 350px;
+            border: 2px solid #7b2e2e;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #930595;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        /* 🎤 Chat Input */
+        input {
+            width: 75%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #6209df;
+            outline: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #ff7eb3;
+            box-shadow: 0px 0px 10px rgba(255, 120, 130, 0.5);
+        }
+
+        /* ✨ Buttons */
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+        }
+
+        /* 💙 Send Button */
+        .send-btn {
+            background-color: #ff758c;
+            color: white;
+        }
+
+        .send-btn:hover {
+            background-color: #ff5277;
+        }
+
+        /* 🔴 Logout Button */
+        .logout-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: #ff4d4d;
+            color: white;
+            padding: 6px 12px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        .logout-btn:hover {
+            background-color: #d93b3b;
+        }
+
+        /* 🗨️ Chat Message Styling */
+        .message {
+            background-color: #ffebeb;
+            padding: 8px 12px;
+            margin: 8px 0;
+            border-radius: 10px;
+            display: inline-block;
+            font-size: 15px;
+            max-width: 80%;
+        }
+
+        .my-message {
+            background-color: #0f3cef;
+            color: white;
+            align-self: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <!-- 🔴 Logout Button -->
+        <button class="logout-btn" onclick="logout()">Logout</button>  
+
+        <!-- ✨ Chat Room Heading -->
+        <h2>💬 Private Chat Room</h2>
+
+        <!-- 💬 Chat Messages Box -->
+        <div class="chat-box" id="chat-box"></div>
+
+        <!-- 🎤 Input and Send Button -->
+        <input type="text" id="message" placeholder="Type a message...">
+        <button class="send-btn" onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            let msg = document.getElementById("message").value;
+            if (msg.trim() !== "") {
+                let chatBox = document.getElementById("chat-box");
+
+                let newMsg = document.createElement("p");
+                newMsg.classList.add("message", "my-message");
+                newMsg.innerText = "You: " + msg;
+                
+                chatBox.appendChild(newMsg);
+                document.getElementById("message").value = "";
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem("loggedInUser");
+            localStorage.removeItem("loggedInUser");
+            alert("You have been logged out.");
+            window.location.assign("/dashboard"); // Redirect to dashboard
+        }
+    </script>
+</body>
+</html>

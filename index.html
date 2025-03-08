@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Chat</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Vibrant Gradient Background */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            animation: gradientBG 10s ease infinite;
+            background-size: 400% 400%;
+        }
+
+        /* Gradient Animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Effect */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Glowing Buttons */
+        .btn {
+            display: block;
+            width: 220px;
+            padding: 12px;
+            margin: 10px auto;
+            font-size: 18px;
+            color: white;
+            background: linear-gradient(45deg, #ff4e50, #fc913a);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.4s ease-in-out;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: 0.4s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 78, 80, 0.6);
+        }
+
+        /* Floating Doodle Elements */
+        .doodle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.6;
+        }
+
+        .doodle1 {
+            top: -20px;
+            left: -20px;
+            animation: moveDoodle1 5s infinite alternate ease-in-out;
+        }
+
+        .doodle2 {
+            bottom: -20px;
+            right: -20px;
+            animation: moveDoodle2 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes moveDoodle1 {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(30deg) scale(1.1); }
+        }
+
+        @keyframes moveDoodle2 {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(-30deg) scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 25px;
+            }
+
+            .btn {
+                width: 180px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://cdn-icons-png.flaticon.com/512/3285/3285757.png" class="doodle doodle1">
+        <img src="https://cdn-icons-png.flaticon.com/512/3285/3285754.png" class="doodle doodle2">
+        
+        <h1>Welcome to Private Chat</h1>
+        <p>Select an option below:</p>
+        <a href="/signup" class="btn">Sign Up</a>
+        <a href="/login" class="btn">Log In</a>
+        <a href="/about" class="btn">About</a>
+    </div>
+
+</body>
+</html>
